@@ -3,6 +3,7 @@ import 'screens/Login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/Signup.dart';
 import 'screens/Menu.dart';
+import 'screens/WeatherPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,7 @@ void main() async {
         '/Signup': (context) => Signup(),
         '/Menu': (context) => Menu(),
       },
-      home: Login()
+      home: WeatherPage()
     )
   );
 }
