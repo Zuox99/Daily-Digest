@@ -47,7 +47,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 40.0),
+                padding: const EdgeInsets.only(top: 80.0),
                 child: Center(
                   child: Container(
                       width: 200,
@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
                         borderSide: new BorderSide(color: lineColor)),
                     prefixIcon: Icon(Icons.email, color: lineColor, size: 25.0,),
 //                      labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com',
+                    hintText: 'Enter an email',
                     hintStyle: hintText,
                   ),
                 ),

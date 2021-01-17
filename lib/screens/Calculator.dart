@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:dailydigest/theme/global.dart';
 
 class Calculator extends StatefulWidget {
   @override
@@ -8,7 +9,6 @@ class Calculator extends StatefulWidget {
 
 class _CalculatorState extends State<Calculator> {
 
-  TextStyle appbarText = new TextStyle(fontSize: 21, color: Colors.grey[200]);
   TextStyle buttonText = new TextStyle(fontSize: 25, color: Colors.white);
   String input = "0";
   var left = 0;
@@ -22,10 +22,14 @@ class _CalculatorState extends State<Calculator> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.1,
         title: Text("Calculator", style: appbarText),
       ),
       body: Container(
+        margin: EdgeInsets.only(top: h * 0.1),
         child: Column(
           children: <Widget>[
             Container(

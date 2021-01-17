@@ -5,6 +5,7 @@ import 'screens/Signup.dart';
 import 'screens/Menu.dart';
 import 'screens/WeatherPage.dart';
 import 'screens/Calculator.dart';
+import 'screens/News.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ void main() async {
         '/WeatherPage': (context) =>WeatherPage(),
         '/Calculator': (context) => Calculator(),
       },
-      home: Menu()
+      home: Login()
     )
   );
 }

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
+import 'package:dailydigest/theme/global.dart';
 
 class WeatherPage extends StatefulWidget {
   @override
@@ -12,15 +13,25 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
 
   var temp;
-  var description;
+  var visibility;
   var currently;
   var humidity;
   var windSpeed;
   var lat;
   var lon;
   var loc;
-  TextStyle appbarText = new TextStyle(fontSize: 21, color: Colors.grey[200]);
   String error;
+
+  TextStyle numText = new TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: Colors.black87
+  );
+
+  TextStyle gridText = new TextStyle(
+    fontSize: 16,
+    color: Colors.black54
+  );
 
   Future getWeather() async {
     bool serviceEnabled;
@@ -58,7 +69,7 @@ class _WeatherPageState extends State<WeatherPage> {
     var results = jsonDecode(response.body);
     setState(() {
       this.temp = ((results['main']['temp'] - 273.15) * 1.8 + 32).round();
-      this.description = results['weather'][0]['description'];
+      this.visibility = (results['visibility'] / 1000).round();
       this.currently = results['weather'][0]['main'];
       this.humidity = results['main']['humidity'];
       this.windSpeed = results['wind']['speed'];
@@ -77,7 +88,10 @@ class _WeatherPageState extends State<WeatherPage> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.1,
         title: Text("Weather", style: appbarText),
       ),
       body: Container(
@@ -93,69 +107,90 @@ class _WeatherPageState extends State<WeatherPage> {
         child: Column(
           children: <Widget>[
             Container(
-              width: w,
-              height: h * 0.3,
+              width: w * 0.8,
+              height: h * 0.6,
+              padding: EdgeInsets.fromLTRB(0, h * 0.2, 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.fromLTRB(0, h * 0.03, 0, h * 0.03),
                     child: Text(
                       loc != null ? loc.toString() : "Loading",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 25,
                       ),
                     ),
                   ),
                   Text(
-                    temp != null ? temp.toString() + "\u00B0" : "Loading",
+                    temp != null ? temp.toString() + "\u00B0" + "F" : "Loading",
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 64,
+                    ),
+                  ),
+                  Text(
+                    currently != null ? currently.toString() : "Loading",
+                    style: TextStyle(
+                      fontSize: 30,
                     ),
                   ),
                 ],
               ),
             ),
             Container(
+              width: w * 0.8,
+              margin: EdgeInsets.only(top:h * 0.01),
+              height: h * 0.15,
               decoration: new BoxDecoration(
                 boxShadow: [
                   new BoxShadow(
-                    color: Colors.white70,
+                    color: Colors.white38,
                     blurRadius: 20.0,
                   ),
                 ],
               ),
+              alignment: Alignment.center,
               child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: FaIcon(FontAwesomeIcons.thermometerHalf),
-                      title: Text("Temperature"),
-                      trailing: Text(temp != null ? temp.toString() + "\u00B0" : "Loading"),
-                    ),
-                    ListTile(
-                      leading: FaIcon(FontAwesomeIcons.cloud),
-                      title: Text("Weather"),
-                      trailing: Text(description != null ? description.toString() : "Loading"),
-                    ),
-                    ListTile(
-                      leading: FaIcon(FontAwesomeIcons.sun),
-                      title: Text("Temperature"),
-                      trailing: Text(humidity != null ? humidity.toString() : "Loading"),
-                    ),
-                    ListTile(
-                      leading: FaIcon(FontAwesomeIcons.wind),
-                      title: Text("Wind speed"),
-                      trailing: Text(windSpeed != null ? windSpeed.toString() : "Loading"),
-                    ),
-                  ],
-                ),
-                ),
+                padding: const EdgeInsets.all(0),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      grid(w, humidity, "Humidity", " %"),
+                      Container(
+                        color: Colors.black38,
+                        width: w * 0.002,
+                        height: h * 0.08,
+                      ),
+                      grid(w, visibility, "Visibility", " km"),
+                      Container(
+                        color: Colors.black38,
+                        width: w * 0.002,
+                        height: h * 0.08,
+                      ),
+                      grid(w, windSpeed, "Wind", " m/s")
+                    ],
+                  ),
+              ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget grid(var w, var num, String name, String flag) {
+    return Container(
+      width: w * 0.2,
+      margin: EdgeInsets.symmetric(horizontal: w * 0.02),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(num != null ? num.toString() + flag : "Loading", style: numText),
+          Text(name, style: gridText)
+        ],
       ),
     );
   }

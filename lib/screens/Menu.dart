@@ -1,6 +1,8 @@
 import 'package:dailydigest/screens/Calculator.dart';
+import 'package:dailydigest/screens/News.dart';
 import 'package:dailydigest/screens/WeatherPage.dart';
 import 'package:flutter/material.dart';
+import 'package:dailydigest/theme/global.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -8,8 +10,13 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  TextStyle menuText = new TextStyle(color: Colors.black, fontSize: 35.0);
-  TextStyle appbarText = new TextStyle(fontSize: 21, color: Colors.grey[200]);
+
+  TextStyle menuText = new TextStyle(
+    color: Colors.black,
+    fontSize: 30.0,
+    fontFamily: 'Times',
+  );
+
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -17,8 +24,11 @@ class _MenuState extends State<Menu> {
     var paddingLR = w * 0.2;
     var paddingTB = h * 0;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text("Menu", style: appbarText),
+        backgroundColor: Colors.transparent,
+        elevation: 0.1,
         automaticallyImplyLeading : false,
         actions: <Widget>[
           FlatButton(
@@ -38,7 +48,7 @@ class _MenuState extends State<Menu> {
                   Colors.black.withOpacity(0.15), BlendMode.multiply)),
         ),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(0, h * 0.14, 0, h * 0.3),
+          padding: EdgeInsets.fromLTRB(0, h * 0.2, 0, h * 0.3),
           child: Column(
               children: <Widget>[
                 Expanded(
@@ -46,7 +56,7 @@ class _MenuState extends State<Menu> {
                     padding: EdgeInsets.fromLTRB(paddingLR, paddingTB, paddingLR, paddingTB),
                     child: FlatButton(
                       onPressed: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => News()));
                       },
                       child: Text(
                         'News',
