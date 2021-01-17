@@ -1,5 +1,7 @@
+import 'package:dailydigest/screens/Calculator.dart';
+import 'package:dailydigest/screens/WeatherPage.dart';
 import 'package:flutter/material.dart';
-import 'package:dailydigest/services/auth.dart';
+
 class Menu extends StatefulWidget {
   @override
   _MenuState createState() => _MenuState();
@@ -66,7 +68,7 @@ class _MenuState extends State<Menu> {
                     padding: EdgeInsets.fromLTRB(paddingLR, paddingTB, paddingLR, paddingTB),
                     child: FlatButton(
                       onPressed: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => WeatherPage()));
                       },
                       child: Text(
                         'Weather',
@@ -88,7 +90,7 @@ class _MenuState extends State<Menu> {
                     padding: EdgeInsets.fromLTRB(paddingLR, paddingTB, paddingLR, paddingTB),
                     child: FlatButton(
                       onPressed: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => Calculator()));
                       },
                       child: Text(
                         'Calculator',
