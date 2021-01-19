@@ -3,9 +3,6 @@ import 'package:dailydigest/screens/Signup.dart';
 import 'package:flutter/material.dart';
 import 'package:dailydigest/services/auth.dart';
 import 'package:dailydigest/theme/global.dart';
-import 'package:dailydigest/Users.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 
 class Login extends StatefulWidget {
   @override
@@ -13,8 +10,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-//  final AuthService _auth = AuthService();
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
   String email = "";
@@ -27,11 +23,8 @@ class _LoginState extends State<Login> {
   Color lineColor = Colors.black;
   Color hintColor = Colors.black54;
 
-
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
-    var w = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Container(
@@ -47,10 +40,6 @@ class _LoginState extends State<Login> {
                 inputBox("password", Icons.lock),
                 noAccount(),
                 loginButton(),
-                Text(
-                  error,
-                  style: TextStyle(color: Colors.red, fontSize: 14.0),
-                ),
               ],
             ),
           ),
@@ -84,7 +73,7 @@ class _LoginState extends State<Login> {
       padding: EdgeInsets.symmetric(horizontal: w * 0.05, vertical: h * 0.01),
       child: TextFormField(
         validator: (val) => flag == "email" ?
-        (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ? null : "Enter an email")
+        (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ? null : "Enter an email like: abc@abc.com")
             : (val.length < 6 ? "Enter a password 6+ chars long" : null),
         onChanged: (val) {
           setState(() {
@@ -135,12 +124,12 @@ class _LoginState extends State<Login> {
       child: FlatButton(
         onPressed: () async {
           if(_formKey.currentState.validate()) {
-            try {
-              await _auth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
-//              User user = result.user;
+            var result = await _auth.signInWithEmailAndPassword(email.trim(), password.trim());
+            if(result == null) {
               Navigator.push(context, MaterialPageRoute(builder: (_) => Menu()));
-            } catch (error) {
-              _showMyDialog(error.toString());
+            } else {
+              var err = result.toString().split("]");
+              _showMyDialog(err.length < 2 ? "Invalid Input" : err[1]);
             }
           }
         },
@@ -153,15 +142,20 @@ class _LoginState extends State<Login> {
   }
 
   Future _showMyDialog(var e) async {
-    print(e);
+    var w = MediaQuery.of(context).size.width;
+
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         Future.delayed(Duration(seconds: 3), () {
           Navigator.of(context).pop(true);
         });
-        return AlertDialog(
-          title: Text(e.toString()),
+        return Container(
+          width: w * 0.7,
+          alignment: Alignment.center,
+          child: AlertDialog(
+            title: Text(e.toString()),
+          ),
         );
       },
     );

@@ -11,7 +11,8 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> with SingleTickerProviderStateMixin {
-  List<List<String>> categories = [
+
+  final List<List<String>> categories = [
     ["Breaking", "https://www.nasa.gov/rss/dyn/breaking_news.rss"],
     ["Education", "https://www.nasa.gov/rss/dyn/educationnews.rss"],
     ["Image of the Day", "https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss"],
@@ -22,7 +23,6 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
 
   TabController _tabController;
   List<RssFeed> feed ;
-//  RssFeed feed;
 
   @override
   void initState() {
@@ -45,11 +45,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
-    var w = MediaQuery.of(context).size.width;
-
     return Scaffold(
-//      extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -88,6 +84,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
   Widget tabBar() {
     return TabBar(
       controller: _tabController,
+
       labelColor: Colors.black87,
       isScrollable: true,
       labelStyle: TextStyle(
@@ -103,6 +100,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
       indicator: UnderlineTabIndicator(),
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorWeight: 10,
+
       tabs: List.generate(categories.length, (index) => Text(categories[index][0])),
     );
   }
@@ -119,6 +117,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
             MaterialPageRoute(
                 builder: (context) => WebViewPage(item.link.replaceFirst('http', 'https'))));
       },
+
       child: Container(
         padding: EdgeInsets.symmetric(vertical: h * 0.01, horizontal: w * 0.05),
         decoration: new BoxDecoration(

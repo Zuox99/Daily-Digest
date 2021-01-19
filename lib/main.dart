@@ -19,7 +19,7 @@ void main() async {
         '/WeatherPage': (context) =>WeatherPage(),
         '/Calculator': (context) => Calculator(),
       },
-      home: Login()
+      home: Menu()
     )
   );
 }

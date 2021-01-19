@@ -16,11 +16,14 @@ class _WebViewPageState extends State<WebViewPage> {
 
   @override
   Widget build(BuildContext context) {
-//    print(_url);
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0.1,
+          leading: BackButton(
+            color: Colors.black87,
+          ),
           title: Text("News Read", style: appbarText),
         ),
         body: Column(

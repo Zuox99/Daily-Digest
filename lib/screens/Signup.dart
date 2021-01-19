@@ -22,7 +22,6 @@ class _SignupState extends State<Signup> {
   Color lineColor = Colors.black;
   Color hintColor = Colors.black54;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +72,7 @@ class _SignupState extends State<Signup> {
       padding: EdgeInsets.symmetric(horizontal: w * 0.05, vertical: h * 0.01),
       child: TextFormField(
         validator: (val) => flag == "email" ?
-        (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ? null : "Enter an email")
+        (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ? null : "Enter an email like: abc@abc.com")
             : (val.length < 6 ? "Enter a password 6+ chars long" : null),
         onChanged: (val) {
           setState(() {
@@ -123,15 +122,13 @@ class _SignupState extends State<Signup> {
           borderRadius: BorderRadius.circular(20)),
       child: FlatButton(
         onPressed: () async {
-          if (_formKey.currentState.validate()) {
-            dynamic result = await _auth.registerWithEmailAndPassword(
-                email.trim(), password.trim());
+          if(_formKey.currentState.validate()) {
+            var result = await _auth.registerWithEmailAndPassword(email.trim(), password.trim());
             if (result == null) {
-              setState(() {
-                error = 'Please supply a valid email';
-              });
-            } else {
               Navigator.push(context, MaterialPageRoute(builder: (_) => Login()));
+            } else {
+              var err = result.toString().split("]");
+              _showMyDialog(err.length < 2 ? "Invalid Input" : err[1]);
             }
           }
         },
@@ -142,5 +139,24 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
-  
+
+  Future _showMyDialog(var e) async {
+    var w = MediaQuery.of(context).size.width;
+
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 3), () {
+          Navigator.of(context).pop(true);
+        });
+        return Container(
+          width: w * 0.7,
+          alignment: Alignment.center,
+          child: AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      },
+    );
+  }
 }
