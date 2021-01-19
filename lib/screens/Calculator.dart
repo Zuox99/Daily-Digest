@@ -24,6 +24,10 @@ class _CalculatorState extends State<Calculator> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        centerTitle: true,
+        leading: BackButton(
+          color: Colors.black87,
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0.1,
         title: Text("Calculator", style: appbarText),

@@ -90,6 +90,10 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        centerTitle: true,
+        leading: BackButton(
+          color: Colors.black87,
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0.1,
         title: Text("Weather", style: appbarText),

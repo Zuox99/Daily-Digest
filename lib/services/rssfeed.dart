@@ -2,10 +2,15 @@ import 'package:http/http.dart' as http;
 import 'package:webfeed/webfeed.dart';
 
 class RssFeedServices {
-  final _targetUrl =
+  var _targetUrl = "";
 //      'https://abcnews.go.com/abcnews/topstories';
-      'https://www.hindustantimes.com/feeds/rss/business/rssfeed.xml';
+//  'https://www.nasa.gov/rss/dyn/breaking_news.rss';
+//      'https://www.hindustantimes.com/feeds/rss/business/rssfeed.xml';
 
+
+  RssFeedServices(var targetUrl) {
+    this._targetUrl = targetUrl;
+  }
 
   Future<RssFeed> getFeed() async{
     var client = http.Client();

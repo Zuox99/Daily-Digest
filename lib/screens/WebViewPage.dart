@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:dailydigest/theme/global.dart';
 
 class WebViewPage extends StatefulWidget {
   final url;
@@ -17,7 +18,11 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
 //    print(_url);
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.1,
+          title: Text("News Read", style: appbarText),
+        ),
         body: Column(
           children: [
             Expanded(
