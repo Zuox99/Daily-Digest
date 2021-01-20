@@ -76,7 +76,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
                         child: tabBar()
                     ),
                     Container(
-                      height: h * 0.8,
+                      height: h * 0.75,
                       width: w,
                       child: TabBarView(
                         controller: _tabController,
@@ -128,7 +128,6 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
 
     return InkWell(
       onTap: () async {
-        print(item.link);
         Navigator.push(
             context,
             MaterialPageRoute(
