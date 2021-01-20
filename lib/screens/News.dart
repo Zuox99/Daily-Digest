@@ -92,7 +92,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
           fontSize: 22,
           fontWeight: FontWeight.bold
       ),
-      unselectedLabelColor: Colors.black45,
+      unselectedLabelColor: Colors.black87,
       unselectedLabelStyle: TextStyle(
         fontSize: 20,
         fontFamily: 'Times',
