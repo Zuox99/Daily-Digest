@@ -107,12 +107,12 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
       isScrollable: true,
       labelStyle: TextStyle(
           fontFamily: 'Times',
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: FontWeight.bold
       ),
       unselectedLabelColor: Colors.black87,
       unselectedLabelStyle: TextStyle(
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: 'Times',
       ),
       indicatorSize: TabBarIndicatorSize.tab,
