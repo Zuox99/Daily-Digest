@@ -33,3 +33,5 @@ A new Flutter application with user authentication and 3 tools: news reader, wea
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/Logout.png" width="380" height="683"/>
 
 ## Background image: https://www.pinterest.com/pin/692991461394515603/
+<img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/nnews1.png" width="380" height="683"/> <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/nnews2.png" width="380" height="683"/>
+
