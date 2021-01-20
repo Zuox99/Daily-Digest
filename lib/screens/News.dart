@@ -45,40 +45,58 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0.1,
-        leading: BackButton(
-          color: Colors.black87,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0.1,
+          leading: BackButton(
+            color: Colors.black87,
+          ),
+          title: Text("News", style: appbarText),
         ),
-        title: Text("News", style: appbarText),
-        bottom: tabBar(),
-      ),
-      body:
-      Container(
-          alignment: Alignment.center,
-          decoration: background,
-          child: feed.length < categories.length ? Text("Loading...") :
-            Container(
-              color: Colors.white38,
-              child: TabBarView(
-                controller: _tabController,
-                children: List.generate(
-                    categories.length, (index) {
-                      RssFeed rFeed = feed[index];
-                      return ListView.builder(
-                          itemCount: rFeed.items.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            final item = rFeed.items[index];
-                            return newsCard(item);
-                          });
-                        }),
+        body:
+        Container(
+            alignment: Alignment.center,
+            decoration: background,
+            child: feed.length < categories.length ? Text("Loading...") :
+              Container(
+                decoration: new BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        height: h * 0.08,
+                        width: w,
+                        child: tabBar()
+                    ),
+                    Container(
+                      height: h * 0.8,
+                      width: w,
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: List.generate(
+                            categories.length, (index) {
+                              RssFeed rFeed = feed[index];
+                              return ListView.builder(
+                                  itemCount: rFeed.items.length,
+                                  itemBuilder: (BuildContext ctxt, int index) {
+                                    final item = rFeed.items[index];
+                                    return newsCard(item);
+                                  });
+                                }),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-      ),
-    );
+        ),
+      );
   }
 
   Widget tabBar() {
@@ -97,9 +115,8 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
         fontSize: 20,
         fontFamily: 'Times',
       ),
-      indicator: UnderlineTabIndicator(),
       indicatorSize: TabBarIndicatorSize.tab,
-      indicatorWeight: 10,
+      indicatorColor: Colors.black87,
 
       tabs: List.generate(categories.length, (index) => Text(categories[index][0])),
     );
@@ -120,10 +137,6 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
 
       child: Container(
         padding: EdgeInsets.symmetric(vertical: h * 0.01, horizontal: w * 0.05),
-        decoration: new BoxDecoration(
-          color: Colors.white70,
-          borderRadius: BorderRadius.circular(10),
-        ),
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
