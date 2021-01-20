@@ -20,10 +20,14 @@ A new Flutter application with authentication and 3 tools: news reader, weather 
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/news3.png" width="380" height="683"/>
 
 ## Weather
-<img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/weather.png" width="380" height="683"/>
+### User location permission request & weather page
+<img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/weather1.png" width="380" height="683"/><img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/weather.png" width="380" height="683"/>
 
 ## Calculator
 ### Calculator & equation error alert
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/calculator1.png" width="380" height="683"/> <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/calculator2.png" width="380" height="683"/>
 ### Correct equation result
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/calculator3.png" width="380" height="683"/>
+
+## Logout
+<img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/logout.png" width="380" height="683"/>
