@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 TextStyle appbarText = new TextStyle(
     fontSize: 25,
-    color: Colors.black87,
+    color: Colors.black,
     fontFamily: 'Times',
     fontWeight: FontWeight.bold
 );

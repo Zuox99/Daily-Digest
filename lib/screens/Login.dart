@@ -15,7 +15,6 @@ class _LoginState extends State<Login> {
 
   String email = "";
   String password = "";
-  String error = "";
 
   TextStyle loginText = new TextStyle(color: Colors.black, fontSize: 20.0);
   TextStyle hintText = new TextStyle(color: Colors.black54, fontSize: 18.0);
