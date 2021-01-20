@@ -1,6 +1,6 @@
-# dailydigest
+# Daily Digest App
 
-A new Flutter application with authentication and 3 tools: news reader, weather check and calculator.
+A new Flutter application with user authentication and 3 tools: news reader, weather check and calculator.
 
 ## Authentication  
 ### Sign Up Page & Login Page
@@ -20,14 +20,16 @@ A new Flutter application with authentication and 3 tools: news reader, weather 
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/news3.png" width="380" height="683"/>
 
 ## Weather
-### User location permission request & weather page
+### User location permission request & weather page with current weather and 7-days forecast (scroll down if can't see 7 days)
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/weather1.png" width="380" height="683"/> <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/weather.png" width="380" height="683"/>
 
 ## Calculator
 ### Calculator & equation error alert
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/calculator1.png" width="380" height="683"/> <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/calculator2.png" width="380" height="683"/>
-### Correct equation result
+### Equation result
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/calculator3.png" width="380" height="683"/>
 
 ## Logout
 <img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/Logout.png" width="380" height="683"/>
+
+# Background image: https://www.pinterest.com/pin/692991461394515603/
