@@ -3,6 +3,7 @@
 A new Flutter application.
 
 ## Authentication
+<img src="https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/login1.png" width="150" height="200" alt="图片描述文字"/>
 ![image](https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/login1.png)
 ![image](https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/login2.png)
 ![image](https://github.com/Zuox99/Daily-Digest/blob/main/screenshot/login3.png)
